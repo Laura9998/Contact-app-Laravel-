@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('website')->nullable();
             $table->string('email');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,3 +34,4 @@ return new class extends Migration
         Schema::dropIfExists('companies');
     }
 };
+
