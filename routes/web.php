@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Settings\AccountController;
+use App\Http\Controllers\Settings\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,7 @@ Route::resources([
 // Route::resource('/contacts', ContactController::class)->parameters([
 //      'contacts' => 'kontak',
 //  ]);
-    
+
 //  Route::resource('/contacts', ContactController::class)->names([
 //      'index' => 'contacts.all',
 //      'show' => 'contacts.view'
@@ -62,3 +63,7 @@ Auth::routes(['verify' => true]);
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/settings/account', [AccountController::class, 'index']);
+
+Route::get('/settings/profile', [ProfileController::class, 'edit'])->name('settings.profile.edit');
+
+Route::put('/settings/profile', [ProfileController::class, 'update'])->name('settings.profile.update');

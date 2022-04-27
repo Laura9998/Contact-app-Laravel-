@@ -21,7 +21,7 @@ class ContactController extends Controller
         // $companies = $user->companies()->orderBy('name')->pluck('name', 'id')->prepend('All Companies', '');
         $companies = Company::userCompanies();
         // \DB::enableQueryLog();
-        $contacts = auth()->user()->contacts()->latestFirst()->paginate(10);
+        $contacts  = auth()->user()->contacts()->with('company')->latestFirst()->paginate(10);
 
         // dd(\DB::getQueryLog());
         return view('contacts.index', compact('contacts', 'companies'));
